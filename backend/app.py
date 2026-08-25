@@ -26,5 +26,17 @@ def obtener_choferes():
      conexion.close()
      return jsonify(resultados)
 
+
+
+@app.route("/carros", methods=["GET"])
+def obtener_carros():
+    conexion = get_connection()
+    cursor = conexion.cursor()
+    cursor.execute("SELECT * FROM carros;")
+    resultados = cursor.fetchall()
+    cursor.close()
+    conexion.close()
+    return jsonify(resultados)
+
 if __name__ == "__main__":
     app.run(debug=True)
